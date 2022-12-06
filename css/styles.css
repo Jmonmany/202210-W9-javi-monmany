@@ -19,9 +19,11 @@
   --footer-height: 3vh;
 }
 
+body {
+  margin-inline: 15rem;
+}
 body .root {
   height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
 }
@@ -47,7 +49,7 @@ header {
   display: flex;
   justify-content: space-around;
   position: absolute;
-  left: 10%;
+  left: 25%;
 }
 .lights li {
   margin: 1rem;
@@ -90,6 +92,40 @@ main {
 main h2 {
   padding: 0;
   margin: 0;
+}
+main .slot-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+main .pokemon {
+  background-color: black;
+  margin: 1rem;
+  border: solid 2px red;
+  align-items: center;
+  align-content: center;
+}
+main .pokemon h4 {
+  color: white;
+  border-bottom: white 1px solid;
+}
+main .pokemon img {
+  justify-self: center;
+  align-items: center;
+}
+main .pokemon button {
+  align-content: center;
+  position: absolute;
+  cursor: pointer;
+  translate: -1.4rem 4.9rem;
+  font-style: normal;
+}
+main .pokemon button:hover {
+  background-color: rgb(22, 227, 22);
+}
+main div button {
+  cursor: pointer;
+  margin-block: 2rem;
 }
 
 .menu ul {

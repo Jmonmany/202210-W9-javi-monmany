@@ -1,10 +1,9 @@
 import { screen } from '@testing-library/dom';
-// adds special assertions like toHaveTextContent
 import '@testing-library/jest-dom';
-import { MenuOptionsType } from '../../types/menu.options.js';
+import { RouterTypes } from '../../types/router.js';
 import { Menu } from './menu';
 
-const menuOptionsMock: MenuOptionsType = [
+const menuOptionsMock: RouterTypes = [
     { label: 'Test option 1', path: '' },
     { label: 'Test option 2', path: '' },
 ];

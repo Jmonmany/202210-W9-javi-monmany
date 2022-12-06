@@ -8,7 +8,7 @@ export class Item extends AbstractComponent {
         private item: Pokemon // private updatePokemon: (id: string, data: Partial<Pokemon>) => void, // private deletePokemon: (id: string) => void
     ) {
         super();
-        this.template = this.createTemplate(item);
+        this.template = this.createTemplate(this.item);
         this.render();
     }
 
@@ -38,22 +38,16 @@ export class Item extends AbstractComponent {
     // }
 
     private createTemplate(item: Pokemon) {
-        // const srcImg = fetch(item.url)
-        //     .then((response) => response.json())
-        //     .then((result) => {
-        //         return result.sprites.front_default;
-        //     });
-
         return ` 
-                <li class="serie">
-                <h4 class="serie__title">${item.name}</h4>
+            <li class="pokemon">
+                <h4 class="pokemon__title">${item.name}</h4>
                 <img
-                  class="serie__poster"
-                  src="${item.url}"
+                  class="pokemon__poster"
+                  src=${item.sprites.front_default}
                   alt=${item.name}
                 />
-                <i class="">➕</i>
-              </li>
+                <button class="add-btn">➕</button>
+            </li>
         `;
 
         // `

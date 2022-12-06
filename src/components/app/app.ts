@@ -12,7 +12,7 @@ export class App {
     constructor() {
         this.menuOptions = [
             { path: './index.html', label: 'Home' },
-            { path: './details.html', label: 'Pokemon Details' },
+            // { path: './details.html', label: 'Pokemon Details' },
             { path: './pokedex.html', label: 'My Pokedex' },
         ];
         try {

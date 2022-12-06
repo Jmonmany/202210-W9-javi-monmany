@@ -1,26 +1,24 @@
 import { Pokemon } from '../models/pokemon';
 
 export class Repo {
-    url = 'https://pokeapi.co/api/v2/pokemon/';
-
-    load() {
-        return fetch(this.url).then((result) => {
+    load(url: string) {
+        return fetch(url).then((result) => {
             if (!result.ok)
                 throw new Error(`Error ${result.status}: ${result.statusText}`);
             return result.json().then((res) => {
-                return res.results;
+                return [res, res.results];
             });
         });
     }
-    query(id: string) {
-        return fetch(this.url + id).then((result) => {
+    query(url: string, id: string) {
+        return fetch(url + id).then((result) => {
             if (!result.ok)
                 throw new Error(`Error ${result.status}: ${result.statusText}`);
             return result.json();
         });
     }
-    create(payload: Partial<Pokemon>) {
-        return fetch(this.url, {
+    create(url: string, payload: Partial<Pokemon>) {
+        return fetch(url, {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {
@@ -32,9 +30,9 @@ export class Repo {
             return result.json();
         });
     }
-    update(payload: Partial<Pokemon>) {
+    update(url: string, payload: Partial<Pokemon>) {
         if (!payload.id) throw new Error('invalid ID');
-        return fetch(this.url + payload.id, {
+        return fetch(url + payload.id, {
             method: 'PATCH',
             body: JSON.stringify(payload),
             headers: {
@@ -46,9 +44,9 @@ export class Repo {
             return result.json();
         });
     }
-    delete(id: string) {
+    delete(url: string, id: string) {
         if (!id) throw new Error('invalid ID');
-        return fetch(this.url + id, {
+        return fetch(url + id, {
             method: 'DELETE',
         }).then((result) => {
             if (!result.ok)

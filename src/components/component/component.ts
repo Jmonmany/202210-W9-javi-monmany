@@ -43,9 +43,9 @@ export abstract class AbstractComponent {
         return this.element;
     }
     protected cleanHtml(selector: string) {
-        const htmlElement = document.querySelectorAll(selector);
+        const htmlElement = document.querySelector(selector);
         if (htmlElement === null) return;
-        htmlElement.forEach((item) => (item.innerHTML = ''));
+        htmlElement.innerHTML = '';
         return htmlElement;
     }
     private selectElement(selector: string): Element {
