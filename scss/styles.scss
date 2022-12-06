@@ -99,15 +99,27 @@ main {
         flex-wrap: wrap;
         justify-content: center;
     }
+    .item-detailed {
+        list-style: none;
+        .detail {
+            margin: 1.5rem;
+            border-bottom: solid 1px black;
+        }
+    }
     .pokemon {
         background-color: black;
         margin: 1rem;
-        border: solid 2px red;
+        border: solid 2px #9b0505;
         align-items: center;
         align-content: center;
         h4 {
+            display: block;
             color: white;
             border-bottom: white 1px solid;
+        }
+        h4:hover {
+            cursor: pointer;
+            color: rgb(22, 227, 22);
         }
         img {
             justify-self: center;
@@ -116,13 +128,14 @@ main {
         button {
             align-content: center;
             position: absolute;
-            cursor: pointer;
+
             translate: -1.4rem 4.9rem;
             font-style: normal;
         }
-        button:hover {
-            background-color: rgb(22, 227, 22);
-        }
+    }
+    button:hover {
+        cursor: pointer;
+        background-color: rgb(22, 227, 22);
     }
     div button {
         cursor: pointer;

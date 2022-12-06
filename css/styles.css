@@ -98,16 +98,28 @@ main .slot-items {
   flex-wrap: wrap;
   justify-content: center;
 }
+main .item-detailed {
+  list-style: none;
+}
+main .item-detailed .detail {
+  margin: 1.5rem;
+  border-bottom: solid 1px black;
+}
 main .pokemon {
   background-color: black;
   margin: 1rem;
-  border: solid 2px red;
+  border: solid 2px #9b0505;
   align-items: center;
   align-content: center;
 }
 main .pokemon h4 {
+  display: block;
   color: white;
   border-bottom: white 1px solid;
+}
+main .pokemon h4:hover {
+  cursor: pointer;
+  color: rgb(22, 227, 22);
 }
 main .pokemon img {
   justify-self: center;
@@ -116,11 +128,11 @@ main .pokemon img {
 main .pokemon button {
   align-content: center;
   position: absolute;
-  cursor: pointer;
   translate: -1.4rem 4.9rem;
   font-style: normal;
 }
-main .pokemon button:hover {
+main button:hover {
+  cursor: pointer;
   background-color: rgb(22, 227, 22);
 }
 main div button {

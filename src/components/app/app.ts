@@ -1,4 +1,3 @@
-import { DetailsPage } from '../../pages/details/details.js';
 import { HomePage } from '../../pages/home/home.js';
 import { PokePage } from '../../pages/pokedex/pokedex.js';
 import { consoleDebug } from '../../tools/debug.js';
@@ -12,7 +11,6 @@ export class App {
     constructor() {
         this.menuOptions = [
             { path: './index.html', label: 'Home' },
-            // { path: './details.html', label: 'Pokemon Details' },
             { path: './pokedex.html', label: 'My Pokedex' },
         ];
         try {
@@ -31,8 +29,6 @@ export class App {
             case this.menuOptions[0].path:
                 return new HomePage('.root');
             case this.menuOptions[1].path:
-                return new DetailsPage('.root');
-            case this.menuOptions[2].path:
                 return new PokePage('.root');
             default:
                 throw new Error('Path no disponible');

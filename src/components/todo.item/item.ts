@@ -1,7 +1,6 @@
 import { Pokemon } from '../../models/pokemon.js';
-import { consoleDebug } from '../../tools/debug.js';
+import { DetailsPage } from '../../pages/details/details.js';
 import { AbstractComponent } from '../component/component.js';
-
 export class Item extends AbstractComponent {
     constructor(
         private selector: string,
@@ -14,23 +13,21 @@ export class Item extends AbstractComponent {
 
     render() {
         const element = super.innRender(this.selector);
-        // element
-        //     .querySelector('[type="checkbox"]')
-        //     ?.addEventListener('change', this.handleCheck.bind(this));
+        element
+            .querySelector('h4')
+            ?.addEventListener('click', this.handleCheck.bind(this));
         // element
         //     .querySelector('[role="button"]')
         //     ?.addEventListener('click', this.handleButton.bind(this));
         return element;
     }
 
-    // handleCheck() {
-    //     const result: Partial<Task> = {
-    //         id: this.item.id,
-    //         isCompleted: !this.item.isCompleted,
-    //     };
-    //     consoleDebug('checked: ' + result);
-    //     this.updateTask(this.item.id, result);
-    // }
+    handleCheck() {
+        new DetailsPage('main', this.item);
+        // const result: Partial<Pokemon> = {
+        //     id: this.item.id,
+        // };
+    }
 
     // handleButton() {
     //     consoleDebug('deleted');
@@ -40,13 +37,13 @@ export class Item extends AbstractComponent {
     private createTemplate(item: Pokemon) {
         return ` 
             <li class="pokemon">
-                <h4 class="pokemon__title">${item.name}</h4>
+                <h4 class="pokemon__title" title="Click for details">${item.name}</h4>
                 <img
-                  class="pokemon__poster"
-                  src=${item.sprites.front_default}
-                  alt=${item.name}
+                    class="pokemon__poster"
+                    src=${item.sprites.front_default}
+                    alt = ${item.name}
                 />
-                <button class="add-btn">➕</button>
+                <button class="add-btn" title = "Add to My Pokedex">➕</button>
             </li>
         `;
 
