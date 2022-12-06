@@ -39,9 +39,9 @@ export class Item extends AbstractComponent {
             <li class="pokemon">
                 <h4 class="pokemon__title" title="Click for details">${item.name}</h4>
                 <img
-                  class="pokemon__poster"
-                  src=${item.sprites.front_default}
-                  alt = ${item.name}
+                   class="pokemon__poster"
+                   src=${item.sprites.front_default}
+                   alt = ${item.name}
                 />
                 <button class="add-btn" title = "Add to My Pokedex">➕</button>
             </li>

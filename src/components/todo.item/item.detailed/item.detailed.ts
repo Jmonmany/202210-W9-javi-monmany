@@ -23,9 +23,9 @@ export class ItemDetailed extends AbstractComponent {
             <li class="pokemon">
                 <h4 class="pokemon__title" title="Click for details">${item.name}</h4>
                 <img
-                  class="pokemon__poster"
-                  src=${item.sprites.other.dream_world.front_default}
-                  alt = ${item.name}
+                    class="pokemon__poster"
+                    src=${item.sprites.other.dream_world.front_default}
+                    alt = ${item.name}
                 />
             </li>
             <li class="detail"><span>height: ${item.height} dm</span></li>
