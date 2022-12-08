@@ -2,15 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'pokemon_gbregular', monospace;
-}
-
-@font-face {
-    font-family: 'pokemon_gbregular';
-    src: url('pokemon_gb-webfont.woff2') format('woff2'),
-        url('pokemon_gb-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'pokemon_gbregular', monospace, 'Times New Roman', Times, serif;
 }
 
 :root {

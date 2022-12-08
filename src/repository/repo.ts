@@ -1,12 +1,11 @@
-import { Pokemon } from '../models/pokemon';
-
+import { Pokemon } from '../models/pokemon.js';
 export class Repo {
     load(url: string) {
         return fetch(url).then((result) => {
             if (!result.ok)
                 throw new Error(`Error ${result.status}: ${result.statusText}`);
             return result.json().then((res) => {
-                return res
+                return res;
             });
         });
     }
