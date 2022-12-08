@@ -7,7 +7,7 @@ describe('Given "Header" component', () => {
     const header = new Header('slot');
     const elements = [
         screen.getByRole('banner'), // <header />
-        screen.getByRole('heading', { name: 'Learning Components' }), // <h1>
+        screen.getByRole('heading', { name: 'The PokeScript' }), // <h1>
     ];
     test('Then we should to be able to instantiate it', () => {
         expect(header).toBeInstanceOf(Header);

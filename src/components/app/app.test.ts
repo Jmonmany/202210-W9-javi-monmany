@@ -4,15 +4,14 @@ import { Header } from '../header/header.js';
 import { Menu } from '../menu/menu.js';
 import { App } from './app.js';
 import { consoleDebug } from '../../tools/debug.js';
-import { DetailsPage } from '../../pages/details/details.js';
 import { PokePage } from '../../pages/pokedex/pokedex.js';
 
 jest.mock('../header/header.js');
 jest.mock('../footer/footer.js');
 jest.mock('../menu/menu.js');
+jest.mock('../../pages/details/details.js');
 jest.mock('../../pages/home/home.js');
-jest.mock('../../pages/about/about.js');
-jest.mock('../../pages/todo/todo.js');
+jest.mock('../../pages/pokedex/pokedex.js');
 jest.mock('../../tools/debug.js');
 
 describe('Given and instantiate "App" class', () => {
@@ -33,24 +32,16 @@ describe('Given and instantiate "App" class', () => {
             expect(HomePage).toHaveBeenCalled();
         });
     });
-    describe('When location include a pathname "./todo.html"', () => {
-        test('Then the component AboutPage, should be instantiated', () => {
-            global.window.location.pathname = './todo.html';
-            const app = new App();
-            expect(app).toBeInstanceOf(App);
-            expect(DetailsPage).toHaveBeenCalled();
-        });
-    });
     describe('When location include a pathname "./about.html"', () => {
-        test('Then the component AboutPage, should be instantiated', () => {
-            global.window.location.pathname = './about.html';
+        test('Then the component PokePage, should be instantiated', () => {
+            global.window.location.pathname = './pokedex.html';
             const app = new App();
             expect(app).toBeInstanceOf(App);
             expect(PokePage).toHaveBeenCalled();
         });
     });
     describe('When any component cannot be instantiated', () => {
-        test('Then the component AboutPage, should be instantiated', () => {
+        test('Then the component DetailsPage, should be instantiated', () => {
             global.window.location.pathname = './bad_path.html';
             const app = new App();
             expect(app).toBeInstanceOf(App);
