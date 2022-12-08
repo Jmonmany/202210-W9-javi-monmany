@@ -10,7 +10,7 @@
         "test": "jest --watchAll --coverage",
         "test:prod": "jest --watchAll --coverage --watchAll=false",
         "lint": "eslint .",
-        "sass": "sass scss:css -w",
+        "sass": "sass scss:dist/css -w",
         "server": "json-server --watch ./server/db.json"
     },
     "keywords": [],
