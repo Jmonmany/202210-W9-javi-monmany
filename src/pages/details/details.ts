@@ -1,8 +1,6 @@
 import { AbstractComponent } from '../../components/component/component.js';
 import { ItemDetailed } from '../../components/todo.item/item.detailed/item.detailed.js';
-import { Item } from '../../components/todo.item/item.js';
 import { Pokemon } from '../../models/pokemon.js';
-
 export class DetailsPage extends AbstractComponent {
     constructor(private selector: string, private item: Pokemon) {
         super();

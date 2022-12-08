@@ -1,24 +1,20 @@
 import { Pokemon } from '../../models/pokemon.js';
 import { Repo } from '../../repository/repo.js';
-import { consoleDebug } from '../../tools/debug.js';
 import { AbstractComponent } from '../component/component.js';
 import { Item } from '../todo.item/item.js';
-
 export class List extends AbstractComponent {
     pokemons: Array<Pokemon>;
     repo = new Repo();
-    url = 'https://pokeapi.co/api/v2/pokemon/';
     counter: number;
-    constructor(private selector: string) {
+    constructor(private selector: string, url: string) {
         super();
-        this.pokemons = []; // array vacío para que no de error todo lo demás
+        this.pokemons = [];
         this.counter = 0;
         this.manageComponent();
-        this.loadPokemons(this.url);
+        this.loadPokemons(url);
     }
 
     manageComponent() {
-        consoleDebug(this.pokemons);
         this.template = this.createTemplate();
         this.render();
     }
@@ -35,19 +31,19 @@ export class List extends AbstractComponent {
             : (this.counter -= this.pokemons.length);
     }
 
-    // async managePokemons() {
-    //     this.pokemons = await this.repo.load();
-    //     this.manageComponent();
-    // }
-
-    // handleButtons(event: Event) {
-    //     const value = event.target.dataset.url
-    //     this.loadPokemons(value)
-    // }
-
     async loadPokemons(url: string) {
-        const jSONArray = await this.repo.load(url);
-        this.pokemons = jSONArray[1];
+        const jSON = await this.repo.load(url);
+        if (url === 'http://localhost:3000/pokemons') {
+            this.pokemons = jSON;
+            !this.counter
+                ? (this.counter = this.pokemons.length)
+                : this.counter;
+            this.pokemons.forEach((item) => {
+                new Item('ul.slot-items', item);
+            });
+            return;
+        }
+        this.pokemons = jSON.results;
         !this.counter ? (this.counter = this.pokemons.length) : this.counter;
         this.pokemons.forEach((item) => {
             fetch(item.url)
@@ -56,11 +52,11 @@ export class List extends AbstractComponent {
                     new Item('ul.slot-items', result);
                 });
         });
-        const btnNext = jSONArray[0].next
-            ? `<button class="next" data-url=${jSONArray[0].next}>⏩</button>`
+        const btnNext = jSON.next
+            ? `<button class="next" data-url=${jSON.next}>⏩</button>`
             : '';
-        const btnPrevious = jSONArray[0].previous
-            ? `<button class="previous" data-url=${jSONArray[0].previous}>⏪</button>`
+        const btnPrevious = jSON.previous
+            ? `<button class="previous" data-url=${jSON.previous}>⏪</button>`
             : '';
         const buttonsDiv = <HTMLElement>document.getElementById('buttons');
         buttonsDiv.innerHTML = `${btnPrevious} ${btnNext}`;
@@ -77,31 +73,10 @@ export class List extends AbstractComponent {
         const spanMessage = document.querySelector('span');
         (
             spanMessage as HTMLElement
-        ).innerText = ` ${this.counter}/${jSONArray[0].count} Pokemons `;
+        ).innerText = ` ${this.counter}/${jSON.count} Pokemons `;
         this.manageComponent();
+        return jSON;
     }
-
-    // async addpokemon(pokemon: Partial<Pokemon>) {
-    //     const finalpokemon: Pokemon = await this.repo.create(pokemon);
-    //     this.pokemons = [...this.pokemons, finalpokemon];
-    //     this.manageComponent();
-    //     return this.pokemons;
-    // }
-    // async updatePokemon(id: string, data: Partial<Pokemon>) {
-    //     data.id = id;
-    //     const finalpokemon: Pokemon = await this.repo.update(data);
-    //     this.pokemons = this.pokemons.map((item) =>
-    //         item.id === id ? finalpokemon : item
-    //     );
-    //     this.manageComponent();
-    //     return this.pokemons;
-    // }
-    // async deletePokemon(id: string) {
-    //     const finalId = await this.repo.delete(id);
-    //     this.pokemons = this.pokemons.filter((item) => item.id !== finalId);
-    //     this.manageComponent();
-    //     return finalId;
-    // }
 
     private createTemplate() {
         return `

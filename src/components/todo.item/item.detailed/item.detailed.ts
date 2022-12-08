@@ -1,7 +1,9 @@
 import { Pokemon } from '../../../models/pokemon.js';
+import { Repo } from '../../../repository/repo.js';
 import { AbstractComponent } from '../../component/component.js';
 
 export class ItemDetailed extends AbstractComponent {
+    repo = new Repo();
     constructor(
         private selector: string,
         private item: Pokemon // private updatePokemon: (id: string, data: Partial<Pokemon>) => void, // private deletePokemon: (id: string) => void
@@ -13,7 +15,6 @@ export class ItemDetailed extends AbstractComponent {
 
     render() {
         const element = super.outRender(this.selector);
-        console.log(this.item);
         return element;
     }
 
