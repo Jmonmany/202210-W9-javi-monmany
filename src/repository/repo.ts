@@ -6,7 +6,7 @@ export class Repo {
             if (!result.ok)
                 throw new Error(`Error ${result.status}: ${result.statusText}`);
             return result.json().then((res) => {
-                return [res, res.results];
+                return res
             });
         });
     }

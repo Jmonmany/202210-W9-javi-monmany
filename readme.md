@@ -4,18 +4,19 @@
 
 ## Pokémon
 
-Esta aplicación tendrá tres páginas:
+This application will have three pages:
 
--   Todos los pokémon - nombre e imagen de cada Pokemon
--   Mis pokémon
--   Detalle de pokémon
+-   All pokémon - name and picture of each Pokémon
+-   My pokémon
+-   Pokémon detail
 
-El listado de todos los pokémon se alimentará de la PokéAPI, y deberá ir paginado. El listado deberá ir acompañado de dos botones, para avanzar y retroceder de página. También debe mostrar el total de pokèmon mostrados vs. el total de pokèmon que existen (p.e. 10/1000).
+The listing of all pokémon will be fed from the PokéAPI, and should be paginated. The listing should be accompanied by two buttons, for page forward and page backward. It should also show the total number of pokémon displayed vs. the total number of pokémon in existence (e.g. 10/1000).
 
-El usuario debe poder añadir los pokémon que quiera a su listado local. El listado de Mis pokémon se alimentará de [una API local](https://github.com/isdi-coders-2022/bootcamp-202201-bcn/tree/master/week3/challenges/pokeapi). El usuario debería poder eliminar pokémon de su listado local, y también modificar algún/unos dato/s.
+The user should be able to add as many pokémon as they want to their local listing. The My pokémon listing will be fed from [a local API](https://github.com/isdi-coders-2022/bootcamp-202201-bcn/tree/master/week3/challenges/pokeapi). The user should be able to remove pokémon from his local listing, and also modify some data.
 
-En cualquiera de los listados, el usuario debería poder ir al detalle de un pokémon, donde se le mostrarán más datos. A esta página de detalle se llega pasando una id por la URL (la id del pokémon que queremos ver).
+In any of the listings, the user should be able to go to the detail page of a pokémon, where more data will be shown. This detail page is reached by passing an id to the URL (the id of the pokémon we want to see).
 
 BEM
-HTML semántico
+Semantic HTML
 Testing
+

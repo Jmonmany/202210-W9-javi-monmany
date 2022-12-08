@@ -1,13 +1,15 @@
 import { Pokemon } from '../../models/pokemon.js';
 import { DetailsPage } from '../../pages/details/details.js';
+import { Repo } from '../../repository/repo.js';
 import { AbstractComponent } from '../component/component.js';
 export class Item extends AbstractComponent {
+    repo = new Repo();
     constructor(
         private selector: string,
-        private item: Pokemon // private updatePokemon: (id: string, data: Partial<Pokemon>) => void, // private deletePokemon: (id: string) => void
+        private pokemon: Pokemon // private updatePokemon: (id: string, data: Partial<Pokemon>) => void, // private deletePokemon: (id: string) => void
     ) {
         super();
-        this.template = this.createTemplate(this.item);
+        this.template = this.createTemplate(this.pokemon);
         this.render();
     }
 
@@ -16,39 +18,60 @@ export class Item extends AbstractComponent {
         element
             .querySelector('h4')
             ?.addEventListener('click', this.handleCheck.bind(this));
-        // element
-        //     .querySelector('[role="button"]')
-        //     ?.addEventListener('click', this.handleButton.bind(this));
+        element
+            .querySelector('button')
+            ?.addEventListener('click', this.handleButton.bind(this));
         return element;
     }
 
     handleCheck() {
-        new DetailsPage('main', this.item);
-        // const result: Partial<Pokemon> = {
-        //     id: this.item.id,
-        // };
+        new DetailsPage('main', this.pokemon);
     }
 
-    // handleButton() {
-    //     consoleDebug('deleted');
-    //     this.deleteTask(this.item.id);
-    // }
+    async handleButton() {
+        const finalpokemon: Pokemon = await this.repo.create(
+            'http://localhost:3000/pokemons',
+            {
+                name: this.pokemon.name,
+                height: this.pokemon.height,
+                weight: this.pokemon.weight,
+                types: [
+                    {
+                        type: {
+                            name: this.pokemon.types[0].type.name,
+                        },
+                    },
+                ],
+                sprites: {
+                    front_default: this.pokemon.sprites.front_default,
+                    other: {
+                        dream_world: {
+                            front_default:
+                                this.pokemon.sprites.other.dream_world
+                                    .front_default,
+                        },
+                    },
+                },
+            }
+        );
+        return finalpokemon;
+    }
 
-    private createTemplate(item: Pokemon) {
+    private createTemplate(pokemon: Pokemon) {
         return ` 
             <li class="pokemon">
-                <h4 class="pokemon__title" title="Click for details">${item.name}</h4>
+                <h4 class="pokemon__title" title="Click for details">${pokemon.name}</h4>
                 <img
                     class="pokemon__poster"
-                    src=${item.sprites.front_default}
-                    alt = ${item.name}
+                    src=${pokemon.sprites.front_default}
+                    alt = ${pokemon.name}
                 />
                 <button class="add-btn" title = "Add to My Pokedex">➕</button>
             </li>
         `;
 
         // `
-        // <li class="item-task" id="item_${this.item.id}">
+        // <li class="pokemon-task" id="item_${this.item.id}">
         //     <span class="item-task__start">
         //         <input type="checkbox" ${this.item.isCompleted && 'checked'}>
         //         <span>${this.item.id}</span>

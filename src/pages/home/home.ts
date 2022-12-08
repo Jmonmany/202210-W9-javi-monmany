@@ -2,6 +2,7 @@ import { AbstractComponent } from '../../components/component/component.js';
 import { List } from '../../components/todo.list/list.js';
 
 export class HomePage extends AbstractComponent {
+    url = 'https://pokeapi.co/api/v2/pokemon/';
     constructor(private selector: string) {
         super();
         this.template = this.createTemplate();
@@ -13,8 +14,8 @@ export class HomePage extends AbstractComponent {
         return super.innRender(this.selector);
     }
 
-    manageComponent(){
-        new List('slot')
+    manageComponent() {
+        new List('slot', this.url);
     }
 
     private createTemplate() {
