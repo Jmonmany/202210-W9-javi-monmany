@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom';
-import { Header } from './header';
+import { Header } from './header.js';
 
 describe('Given "Header" component', () => {
     document.body.innerHTML = `<slot></slot>`;

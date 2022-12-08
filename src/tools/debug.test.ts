@@ -1,4 +1,4 @@
-import { consoleDebug } from './debug';
+import { consoleDebug } from './debug.js';
 
 const log = jest.spyOn(global.console, 'log').mockImplementation(() => {
     //

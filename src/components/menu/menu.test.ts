@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import { RouterTypes } from '../../types/router.js';
-import { Menu } from './menu';
+import { Menu } from './menu.js';
 
 const menuOptionsMock: RouterTypes = [
     { label: 'Test option 1', path: '' },

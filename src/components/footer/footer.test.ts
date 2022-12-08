@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom';
-import { Footer } from './footer';
+import { Footer } from './footer.js';
 
 describe('Given "Footer" component', () => {
     document.body.innerHTML = `<slot></slot>`;
